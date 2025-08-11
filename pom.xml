@@ -10,7 +10,7 @@
     <name>Sample Serenity BDD project using JUnit 5</name>
 
     <properties>
-        <serenity.version>4.2.11</serenity.version>
+        <serenity.version>4.2.26</serenity.version>
         <junit5.version>5.11.4</junit5.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <encoding>UTF-8</encoding>
@@ -18,11 +18,11 @@
         <webdriver.base.url></webdriver.base.url>
     </properties>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-core -->
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-core</artifactId>
             <version>${serenity.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
@@ -30,11 +30,17 @@
             <version>${serenity.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!-- Remove the JUnit 4 dependency as we're using JUnit 5 -->
+        <!-- <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-junit</artifactId>
             <version>${serenity.version}</version>
             <scope>test</scope>
+        </dependency> -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.32.0</version>
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
@@ -70,6 +76,19 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit5.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Add missing JUnit Platform dependencies -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+            <version>1.11.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.11.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
