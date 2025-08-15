@@ -5,11 +5,11 @@ import net.serenitybdd.core.steps.UIInteractionSteps;
 
 public class LoginActions extends UIInteractionSteps {
 
-    @Step("Log in as a standard user")
-    public void asAStandardUser() {
+    @Step("Log in as a {0}}")
+    public void as(Users user) {
         openUrl("https://www.saucedemo.com");
-        $("[data-test='username']").sendKeys("standard_user");
-        $("[data-test='password']").sendKeys("secret_sauce");
+        $("[data-test='username']").sendKeys(user.getUsername());
+        $("[data-test='password']").sendKeys(user.getPassword());
         $("[data-test='login-button']").click();
     }
 
