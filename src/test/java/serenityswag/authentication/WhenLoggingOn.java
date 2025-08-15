@@ -2,6 +2,7 @@ package serenityswag.authentication;
 
 import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.annotations.Steps;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import org.junit.jupiter.api.Test;
@@ -26,8 +27,10 @@ public class WhenLoggingOn{
     @Test
     public void usersCanLogOnViaTheHomePage() {
         loginActions.as(Users.STANDARD_USER);
-        // Should see product catalog
-        assertThat(inventoryPage.getHeading())
-                .isEqualToIgnoringCase("Products");
+
+        Serenity.reportThat("The inventory page should be displayed with correct title",
+                ()->assertThat(inventoryPage.getHeading()).isEqualToIgnoringCase("Products")
+        );
+
     }
 }
