@@ -1,30 +1,32 @@
 package serenityswag.authentication;
 
 import net.serenitybdd.annotations.Managed;
+import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
+import serenityswag.authentication.actions.LoginActions;
+import serenityswag.inventory.InventoryPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SerenityJUnit5Extension.class)
-public class WhenLoggingOn extends UIInteractionSteps {
+public class WhenLoggingOn{
 
-//    @Managed
-//    WebDriver driver;
+    @Managed
+    WebDriver driver;
+
+    @Steps
+    LoginActions loginActions;
+    InventoryPage inventoryPage;
 
     @Test
     public void usersCanLogOnViaTheHomePage() {
-
-        openUrl("https://www.saucedemo.com");
-        $("[data-test='username']").sendKeys("standard_user");
-        $("[data-test='password']").sendKeys("secret_sauce");
-        $("[data-test='login-button']").click();
-
+        loginActions.asAStandardUser();
         // Should see product catalog
-        assertThat($(".title").getText())
+        assertThat(inventoryPage.getHeading())
                 .isEqualToIgnoringCase("Products");
     }
 }
