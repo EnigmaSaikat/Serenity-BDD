@@ -1,4 +1,4 @@
-package serenityswag.authentication.actions;
+package serenityswag.authentication;
 
 
 /*
